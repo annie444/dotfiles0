@@ -19,7 +19,7 @@ if [ -d "${HOME}/.config/nixpkgs" ]; then
   cp -Lr "${HOME}/.config/nixpkgs" "${HOME}/.config/backups/${DATE}/nixpkgs"
   rm -rd "${HOME}/.config/nixpkgs"
 fi
-ln -s "${DIR}/nixpkgs" "${HOME}/.config/nixpkgs"
+cp -r "${DIR}/nixpkgs" "${HOME}/.config/nixpkgs"
 
 if [ -d "${HOME}/.config/nvim" ]; then
   cp -Lr "${HOME}/.config/nvim" "${HOME}/.config/backups/${DATE}/nvim" 
