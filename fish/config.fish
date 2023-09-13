@@ -7,10 +7,10 @@ status --is-interactive; and begin
     alias .. 'cd ..'
     alias :q exit
     alias cat 'bat'
-    alias drb 'darwin-rebuild build --flake /Users/annieehler/.config/nixpkgs'
-    alias drs 'darwin-rebuild switch --flake /Users/annieehler/.config/nixpkgs'
+    alias drb 'darwin-rebuild build --flake $HOME/.config/nixpkgs'
+    alias drs 'darwin-rebuild switch --flake $HOME/.config/nixpkgs'
     alias du 'dust'
-    alias flakeup 'nix flake update /Users/annieehler/.config/nixpkgs'
+    alias flakeup 'nix flake update $HOME/.config/nixpkgs'
     alias g 'git'
     alias gh 'op plugin run -- gh'
     alias la 'll -a'
@@ -35,8 +35,10 @@ status --is-interactive; and begin
         set -l post_joined (string replace $prev_joined "" $joined)
         set -l prev (string split " " (string trim $prev_joined))
         set -l post (string split " " (string trim $post_joined))
-        set fish_complete_path $prev "/Users/annieehler/.local/share/fish/home-manager_generated_completions" $post
+        set fish_complete_path $prev "$HOME/.local/share/fish/home-manager_generated_completions" $post
+        set -g PATH  $PATH "$HOME/google-cloud-sdk/bin"
     end
+    
     direnv hook fish | source
     starship init fish | source
 end

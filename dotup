@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DATE=$(date +%Y-%m-%d_%H-%M-%S)
+
+if [ -d "${HOME}/.config/nixpkgs" ]; then
+  cp -Lr "${HOME}/.config/nixpkgs" "${HOME}/.config/backups/${DATE}/nixpkgs"
+  rm -rd "${HOME}/.config/nixpkgs"
+fi
+cp -r "${HOME}/.config/dotfiles/nixpkgs" "${HOME}/.config/nixpkgs"

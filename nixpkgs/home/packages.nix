@@ -166,7 +166,6 @@
       s3cmd
       terraform
       copilot-cli
-      nix-prefetch-github
       stack
       typescript
       libclang
@@ -177,8 +176,9 @@
       git-extras
       grpcurl
       kubernetes-helm
-      kind
+      kubectx
       kubectl
+      nix-prefetch-scripts
       kustomize
       lazygit
       mkcert

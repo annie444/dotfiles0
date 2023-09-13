@@ -44,3 +44,9 @@ if [ -d "${DIR}/copilot" ]; then
   rm -rf "${HOME}/.config/github-copilot"
   ln -s "${DIR}/copilot" "${HOME}/.config/github-copilot"
 fi
+
+sudo ln -s "${DIR}/dotup" /usr/local/bin/
+if [[ "${DIR}" != "${HOME}/.config/dotfiles" ]]; then
+  cd "${HOME}"
+  mv "${DIR}" "${HOME}/.config/dotfiles"
+fi
