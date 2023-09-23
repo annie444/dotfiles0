@@ -66,6 +66,13 @@ local global = {
   node_host_prog = "/Users/annieehler/.nvm/versions/node/v18.15.0/bin/node",
   perl_host_prog = "/opt/homebrew/bin/perl",
   copilot_assume_mapped = true,
+  vimwiki_list = {{
+    path = '~/Documents/Notes',
+    path_html = '~/Documents/Notes/HTML/',
+    syntax = 'markdown',
+    ext = '.md'
+  }},
+  vimwiki_url_maxsave = 0,
 }
 
 vim.opt.shortmess:append "Ac" -- Disable asking when editing file with swapfile.

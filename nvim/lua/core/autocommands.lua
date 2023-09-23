@@ -9,6 +9,17 @@ local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
+
+autocmd( "BufNewFile", {
+  pattern = {"*.md"},
+  command = ":r! echo \\# %:t:r",
+})
+
+autocmd( "BufNewFile", {
+  pattern = {"*.md"},
+  command = ":norm kddo",
+})
+
 autocmd("VimEnter", {
   callback = function(data)
     -- buffer is a directory

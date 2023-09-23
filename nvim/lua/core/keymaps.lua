@@ -39,6 +39,18 @@ end
 
 local keymaps = {
   normal_mode = {
+    ["<leader>j"] = {
+      cmd = ":VimwikiToggleListItem<cr>",
+      desc = "Toggle list item"
+    },
+    ["<leader>k"] = {
+      cmd = ":VimwikiIncrementListItem<cr>",
+      desc = "Increment list item"
+    },
+    ["<leader>s"] = {
+      cmd = "?#<space><cr>jV}k :sort!<cr>:let @/=''<cr>",
+      desc = "Sort list items"
+    },
     ["<leader>nl"] = {
       cmd = "Lazy",
       desc = "LazyVim",

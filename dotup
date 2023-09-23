@@ -2,8 +2,37 @@
 
 DATE=$(date +%Y-%m-%d_%H-%M-%S)
 
+if [ ! -d "${HOME}/.config/backups/${DATE}" ]; then
+  mkdir "${HOME}/.config/backups/${DATE}"
+fi
+if [ ! -d "${HOME}/.config/temp" ]; then
+  mkdir "${HOME}/.config/temp"
+fi
+
+# /Users/annieehler/.config/nvim/init.lua
+if [ -d "${HOME}/.config/nvim" ]; then
+  unlink "${HOME}/.config/nvim"
+fi
+# /Users/annieehler/.config/starship.toml
+if [ -f "${HOME}/.config/starship.toml" ]; then
+  unlink "${HOME}/.config/starship.toml"
+fi
+# /Users/annieehler/.config/fish/config.fish
+if [ -d "${HOME}/.config/fish" ]; then
+  unlink "${HOME}/.config/fish"
+fi
+
 if [ -d "${HOME}/.config/nixpkgs" ]; then
   cp -Lr "${HOME}/.config/nixpkgs" "${HOME}/.config/backups/${DATE}/nixpkgs"
   rm -rd "${HOME}/.config/nixpkgs"
 fi
 cp -r "${HOME}/.config/dotfiles/nixpkgs" "${HOME}/.config/nixpkgs"
+
+darwin-rebuild switch --flake "$HOME/.config/nixpkgs"
+
+sudo rm -rd "${HOME}/.config/nvim"
+sudo rm -rd "${HOME}/.config/starship.toml"
+sudo rm -rd "${HOME}/.config/fish"
+ln -s "${HOME}/.config/dotfiles/nvim" "${HOME}/.config/nvim"
+ln -s "${HOME}/.config/dotfiles/starship.toml" "${HOME}/.config/starship.toml"
+ln -s "${HOME}/.config/dotfiles/fish" "${HOME}/.config/fish"

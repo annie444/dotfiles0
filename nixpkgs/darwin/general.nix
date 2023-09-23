@@ -15,6 +15,7 @@
     kitty
     terminal-notifier
   ];
+  environment.darwinConfig = "$HOME/.config/nixpkgs";
   environment.pathsToLink = [ "/share/zsh" ];
   programs.nix-index.enable = true;
 

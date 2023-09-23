@@ -17,9 +17,8 @@
   nix.settings.extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ]; 
   nix.settings.keep-derivations = true;
   nix.settings.keep-outputs = true;
-    
   nix.configureBuildUsers = true;
-
+  
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 

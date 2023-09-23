@@ -2,6 +2,11 @@ set -U fish_term24bit 1
 
 zoxide init fish | source
 
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+end
+set -e NIX_REMOTE
+
 status --is-interactive; and begin
     # Aliases
     alias .. 'cd ..'
@@ -37,6 +42,7 @@ status --is-interactive; and begin
         set -l post (string split " " (string trim $post_joined))
         set fish_complete_path $prev "$HOME/.local/share/fish/home-manager_generated_completions" $post
         set -g PATH  $PATH "$HOME/google-cloud-sdk/bin"
+        set -g USE_GKE_GCLOUD_AUTH_PLUGIN true
     end
     
     direnv hook fish | source

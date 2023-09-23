@@ -105,6 +105,7 @@ in
     "visual-studio-code"
     "vlc"
     "zoom"
+    "libreoffice"
   ];
 
   # Configuration related to casks
