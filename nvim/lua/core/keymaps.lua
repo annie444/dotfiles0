@@ -39,7 +39,7 @@ end
 
 local keymaps = {
   normal_mode = {
-    ["<leader>j"] = {
+    ["<leader>i"] = {
       cmd = ":VimwikiToggleListItem<cr>",
       desc = "Toggle list item"
     },
@@ -231,16 +231,6 @@ local keymaps = {
     ["<Down>"] = {
       cmd = ":tabclose<CR>",
       desc = "Close tab",
-    },
-
-    ["<"] = {
-      cmd = "<<",
-      desc = "Indent backward",
-    },
-
-    [">"] = {
-      cmd = ">>",
-      desc = "Indent forward",
     },
 
     ["<A-j>"] = {

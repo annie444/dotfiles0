@@ -193,7 +193,6 @@
       mercurialFull # version management system
       tree-sitter # file syntax tree
       gzip # GNU file compression tools
-      busybox # UNIX utilities
       gofumpt # go formatter
       go # go language runtime and compiler
     ;
