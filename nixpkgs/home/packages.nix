@@ -141,6 +141,19 @@
       gitmoji-cli # Emoji protocols for CLI
     ;
 
+    inherit (pkgs.python311Packages)
+      python # the language
+      pynvim # neovim API for python
+      jupyter-client # jupyter runtime
+      ueberzug # image protocols for the terminal
+      pillow # Python Image library
+      types-pillow # type stubs for pillow
+      cairosvg # SVG protocols for python
+      pnglatex # Convert LaTeX snippets into PNGs
+      plotly # python plotting library
+      pip # python package manager
+    ;
+
     # Dev stuff
     inherit (pkgs)
       cloc # source code line counter
@@ -160,7 +173,6 @@
       php # PHP runtime
       tetex # LaTeX runtime and interpreter
       jdk # Java virtual machine
-      python3Full # Python complete language 
       jq # JSON terminal parser
       nodejs # NodeJS runtime
       yarn # Yarn (NodeJS) runtime and package manager

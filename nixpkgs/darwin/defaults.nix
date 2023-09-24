@@ -1,7 +1,7 @@
 {
   system.defaults.NSGlobalDomain = {
     "com.apple.keyboard.fnState" = false;
-    "com.apple.mouse.tapBehavior" = 1;
+    "com.apple.mouse.tapBehavior" = null;
     "com.apple.sound.beep.feedback" = 1;
     "com.apple.sound.beep.volume" = 1.000;
     "com.apple.springing.delay" = 0.5;
@@ -133,10 +133,10 @@
   # Trackpad
   system.defaults.trackpad = {
     ActuationStrength = 1;
-    Dragging = true;
+    Dragging = false;
     FirstClickThreshold = 1;
     SecondClickThreshold = 1;
-    TrackpadThreeFingerDrag = true;
+    TrackpadThreeFingerDrag = false;
     Clicking = true;
     TrackpadRightClick = true;
   };
