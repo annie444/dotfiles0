@@ -27,6 +27,10 @@ status --is-interactive; and begin
     alias nr 'nix run'
     alias ns 'nix search'
     alias vimdiff 'nvim -d'
+    alias find 'bfs -exec bat {} +'
+    alias fd 'bfs -exec bat {} +'
+    alias gd 'batdiff'
+    alias bathelp 'bat --plain --language=help'
     base16-dracula
     set -g fish_greeting ""
     thefuck --alias | source
@@ -35,6 +39,7 @@ status --is-interactive; and begin
         set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
     end
     begin
+        set -g MANPAGER "sh -c 'col -bx | bat -l man -p'"
         set -l joined (string join " " $fish_complete_path)
         set -l prev_joined (string replace --regex "[^\s]*generated_completions.*" "" $joined)
         set -l post_joined (string replace $prev_joined "" $joined)
@@ -43,6 +48,7 @@ status --is-interactive; and begin
         set fish_complete_path $prev "$HOME/.local/share/fish/home-manager_generated_completions" $post
         set -g PATH  $PATH "$HOME/google-cloud-sdk/bin"
         set -g USE_GKE_GCLOUD_AUTH_PLUGIN true
+        set -g BAT_THEME dracula
     end
     
     direnv hook fish | source
