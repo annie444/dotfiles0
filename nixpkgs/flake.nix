@@ -46,9 +46,9 @@
               nix-index
               niv
               purescript
-              ;
+            ;
           }) // {
-            # Add other overlays here if needed.
+             
           }
         );
       };
@@ -219,10 +219,10 @@
       devShells = let pkgs = self.legacyPackages.${system}; in
         {
           python = pkgs.mkShell {
-            name = "python310";
+            name = "python311";
             inputsFrom = attrValues {
               inherit (pkgs.pkgs-main.python311Packages) black isort;
-              inherit (pkgs) poetry python310 pyright;
+              inherit (pkgs) poetry python311 pyright;
             };
           };
         };
