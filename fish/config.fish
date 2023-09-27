@@ -20,7 +20,7 @@ status --is-interactive; and begin
     alias gh 'op plugin run -- gh'
     alias la 'll -a'
     alias ll 'ls -l --time-style long-iso --icons'
-    alias ls 'exa -@la --icons'
+    alias ls 'eza --extended --bytes --links --blocksize --group --header --dereference --context --binary --octal-permissions --git --git-repos --long --all --all --icons --grid --classify --hyperlink --group-directories-first --time=modified --sort=extension --color=always --width=1 --time-style=long-iso'
     alias nb 'nix build'
     alias nd 'nix develop'
     alias nf 'nix flake'

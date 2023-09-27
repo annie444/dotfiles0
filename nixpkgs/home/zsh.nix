@@ -68,7 +68,7 @@ in
     ns = "nix search";
     fzf = "${fzf}/bin/fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
     spotify = "${spotify-tui}/bin/spt";
-    ls = "${exa}/bin/exa -@la --icons";
+    ls = "${eza}/bin/eza --extended --bytes --links --blocksize --group --header --dereference --context --binary --octal-permissions --git --git-repos --long --all --all --icons --grid --classify --hyperlink --group-directories-first --time=modified --sort=extension --color=always --width=1 --time-style=long-iso";
     cat = "${bat}/bin/bat";
     du = "${du-dust}/bin/dust";
     g = "${gitAndTools.git}/bin/git";

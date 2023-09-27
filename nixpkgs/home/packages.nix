@@ -58,7 +58,7 @@
       curl # HTTP fetcher
       dooit # to-do manager
       du-dust # fancy version of `du`
-      exa # fancy version of `ls`
+      eza # fancy version of `ls`
       fd # fancy version of `find`
       fzf # fuzzy finder
       fzy # limited fuzzy finder
@@ -106,7 +106,6 @@
     # C/C++ libs
     inherit (pkgs)
       armadillo # Linear algebra and graphics computing library
-      bear # Auto-create compiler wrapping
       dlib # ML/AI library
       gsl # C/C++ guidelines and support
       libpqxx # C/C++ PostgreSQL bindings

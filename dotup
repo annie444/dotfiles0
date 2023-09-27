@@ -28,13 +28,46 @@ if [ -d "${HOME}/.config/nixpkgs" ]; then
 fi
 cp -r "${HOME}/.config/dotfiles/nixpkgs" "${HOME}/.config/nixpkgs"
 
-darwin-rebuild check --flake "$HOME/.config/nixpkgs"
-darwin-rebuild build --flake "$HOME/.config/nixpkgs"
-darwin-rebuild switch --flake "$HOME/.config/nixpkgs"
+POSITIONAL_ARGS=()
+UPDATE=false
 
-sudo rm -rd "${HOME}/.config/nvim"
-sudo rm -rd "${HOME}/.config/starship.toml"
-sudo rm -rd "${HOME}/.config/fish"
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -u|-U|--update)
+      UPDATE=true # set to update
+      shift # past argument
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+
+darwin-rebuild check --flake "$HOME/.config/nixpkgs"
+
+if [ ${#POSITIONAL_ARGS[@]} -gt 0 ]; then
+  darwin-rebuild "${POSITIONAL_ARGS[@]}"
+elif [ "$UPDATE" = true ]; then
+  darwin-rebuild build --recreate-lock-file --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
+  darwin-rebuild switch --refresh --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
+else
+  darwin-rebuild build --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
+  darwin-rebuild switch --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
+fi
+
+if [ -d "${HOME}/.config/nixpkgs" ]; then
+  sudo rm -rd "${HOME}/.config/nvim"
+fi
+
+if [ -f "${HOME}/.config/starship.toml" ]; then
+  sudo rm -rd "${HOME}/.config/starship.toml"
+fi
+
+if [ -d "${HOME}/.config/fish" ]; then
+  sudo rm -rd "${HOME}/.config/fish"
+fi
+
 ln -s "${HOME}/.config/dotfiles/nvim" "${HOME}/.config/nvim"
 ln -s "${HOME}/.config/dotfiles/starship.toml" "${HOME}/.config/starship.toml"
 ln -s "${HOME}/.config/dotfiles/fish" "${HOME}/.config/fish"
