@@ -20,6 +20,7 @@
   nix.configureBuildUsers = true;
   
   # Auto upgrade nix package and the daemon service.
+  nix.package = pkgs.nixUnstable;
   services.nix-daemon.enable = true;
 
 

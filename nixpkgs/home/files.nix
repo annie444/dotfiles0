@@ -10,32 +10,12 @@
   programs.neovim.withRuby = true;
 
   home.file = {
-    ".wakatime.cfg" = {
-      source = ../rcfiles/wakatime.cfg;
-      enable = true;
-    };
-    ".npmrc" = {
-      source = ../rcfiles/.npmrc;
-      enable = true; 
-    };
     ".iftoprc" = {
       source = ../rcfiles/iftop;
       enable = true; 
     };
     ".blsdatarc" = {
       source = ../rcfiles/bls;
-      enable = true; 
-    };
-    ".fern/id" = {
-      source = ../rcfiles/fern/id;
-      enable = true; 
-    };
-    ".fern/token" = {
-      source = ../rcfiles/fern/token;
-      enable = true; 
-    };
-    ".config/spotify-tui/.spotify_token_cache.json" = {
-      source = ../rcfiles/spotify;
       enable = true; 
     };
     ".config/lazygit/config.yml" = {

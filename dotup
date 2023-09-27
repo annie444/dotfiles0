@@ -28,6 +28,8 @@ if [ -d "${HOME}/.config/nixpkgs" ]; then
 fi
 cp -r "${HOME}/.config/dotfiles/nixpkgs" "${HOME}/.config/nixpkgs"
 
+darwin-rebuild check --flake "$HOME/.config/nixpkgs"
+darwin-rebuild build --flake "$HOME/.config/nixpkgs"
 darwin-rebuild switch --flake "$HOME/.config/nixpkgs"
 
 sudo rm -rd "${HOME}/.config/nvim"

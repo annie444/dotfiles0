@@ -22,11 +22,9 @@
     prefmanager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     prefmanager.inputs.flake-compat.follows = "flake-compat";
     prefmanager.inputs.flake-utils.follows = "flake-utils";
-
-    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, stylix, darwin, home-manager, flake-utils, ...}@inputs: 
+  outputs = { self, nixpkgs, darwin, home-manager, flake-utils, ...}@inputs: 
     let
       inherit (self.lib) attrValues makeOverridable mkForce optionalAttrs singleton;
 
@@ -113,8 +111,6 @@
       };
 
       homeManagerModules = {
-        styling = stylix.homeManagerModules.stylix;
-        annie-styles = import ./home/stylix.nix;
         # My configurations
         annie-colors = import ./home/colors.nix;
         annie-config-files = import ./home/config-files.nix;

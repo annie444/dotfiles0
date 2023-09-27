@@ -2,12 +2,6 @@ return {
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    {
-      "zbirenbaum/copilot-cmp",
-      config = function ()
-        require("copilot_cmp").setup()
-      end
-    },
     "hrsh7th/cmp-buffer", -- Buffer Completions
     "hrsh7th/cmp-path", -- Path Completions
     "saadparwaiz1/cmp_luasnip", -- Snippet Completions
@@ -34,6 +28,12 @@ return {
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done {})
       end,
     },
+    {
+      "zbirenbaum/copilot-cmp",
+      config = function ()
+        require("copilot_cmp").setup()
+      end
+    }
   },
   config = function()
     local cmp = require "cmp"
@@ -139,6 +139,23 @@ return {
           vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
           return vim_item
         end,
+      },
+      sorting = {
+        priority_weight = 2,
+        comparators = {
+          require("copilot_cmp.comparators").prioritize,
+          -- Below is the default comparitor list and order for nvim-cmp
+          cmp.config.compare.offset,
+          -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.locality,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        }
       },
       sources = {
         { name = "copilot" },
