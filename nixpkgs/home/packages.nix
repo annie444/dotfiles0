@@ -74,6 +74,7 @@
       most # better less
       neofetch # better wget and curl
       nmap # map netowork traffic
+      libwebp # webp image tools
       notcurses # GUI compat for terminals
       parallel # runs commands in parallel
       ripgrep # better version of `grep`
