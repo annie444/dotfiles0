@@ -44,9 +44,6 @@ in
     Pages = 409201541;
     Slack = 803453959;
     "Tailscale" = 1475387142;
-    Vimari = 1480933944;
-    # Re-enable when Xcode updates to version 15 in AppStore.
-    # Xcode = 497799835;
     "1Blocker - Ad Blocker" = 1365531024;
     "Super Agent for Safari" = 1568262835;
     "Magnet" = 441258766;
@@ -61,6 +58,7 @@ in
     "Compressor" = 424390742;
     "PiPifier" = 1160374471;
     "Amphetamine" = 937984704;
+    "Messenger" = 1480068668;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has

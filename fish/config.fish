@@ -27,8 +27,8 @@ status --is-interactive; and begin
     alias nr 'nix run'
     alias ns 'nix search'
     alias vimdiff 'nvim -d'
-    alias find 'bfs -exec bat {} +'
-    alias fd 'bfs -exec bat {} +'
+    alias find 'bfs'
+    alias fd 'bfs'
     alias gd 'batdiff'
     alias bathelp 'bat --plain --language=help'
     base16-dracula

@@ -47,16 +47,21 @@ done
 darwin-rebuild check --flake "$HOME/.config/nixpkgs"
 
 if [ ${#POSITIONAL_ARGS[@]} -gt 0 ]; then
+  echo "Running custom args..."
   darwin-rebuild "${POSITIONAL_ARGS[@]}"
 elif [ "$UPDATE" = true ]; then
-  darwin-rebuild build --recreate-lock-file --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
-  darwin-rebuild switch --refresh --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
+  echo "Updating..."
+  darwin-rebuild build --recreate-lock-file --flake "$HOME/.config/nixpkgs"
+  echo "Installing..."
+  darwin-rebuild switch --refresh --flake "$HOME/.config/nixpkgs"
 else
-  darwin-rebuild build --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
-  darwin-rebuild switch --flake "$HOME/.config/nixpkgs" "${POSITIONAL_ARGS[@]}"
+  echo "Building..."
+  darwin-rebuild build --flake "$HOME/.config/nixpkgs"
+  echo "Installing..."
+  darwin-rebuild switch --flake "$HOME/.config/nixpkgs"
 fi
 
-if [ -d "${HOME}/.config/nixpkgs" ]; then
+if [ -d "${HOME}/.config/nvim" ]; then
   sudo rm -rd "${HOME}/.config/nvim"
 fi
 

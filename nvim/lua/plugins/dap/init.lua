@@ -69,5 +69,25 @@ return {
         }
       end,
     },
+    {
+      "jay-babu/mason-nvim-dap.nvim",
+      config = function()
+        local debug_adapters = {
+          "chrome-debug-adapter",
+          "firefox-dubug-adapter",
+          "codelldb",
+          "cpptools",
+          "debugpy",
+          "go-debug-adapter",
+          "js-debug-adapter",
+          "php-debug-adapter"
+        }
+        require ('mason-nvim-dap').setup({
+          ensure_installed = debug_adapters,
+          handlers = {}, -- sets up dap in the predefined manner
+        })
+      end,
+    },
+    "williamboman/mason.nvim",
   },
 }

@@ -12,24 +12,21 @@ return {
       config = function()
         require("neodev").setup {
           library = {
-            enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-            -- these settings will be used for your Neovim config directory
-            runtime = true, -- runtime path
-            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-            plugins = true, -- installed opt or start plugins in packpath
-            -- you can also specify the list of plugins to make available as a workspace library
-            -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+            enabled = true,    -- when not enabled, neodev will not change any settings to the LSP server
+            runtime = true,    -- runtime path
+            types = true,      -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+            plugins = true,    -- installed opt or start plugins in packpath
           },
           setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-          -- With lspconfig, Neodev will automatically setup your lua-language-server
-          -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
-          -- in your lsp start options
           lspconfig = false,
-          -- much faster, but needs a recent built of lua-language-server
-          -- needs lua-language-server >= 3.6.0
           pathStrict = true,
         }
       end,
+    },
+    {
+      "creativenull/efmls-configs-nvim",
+      version = "v1.x.x", -- version is optional, but recommended
+      event = { "BufReadPost", "BufNewFile" },
     },
     {
       "williamboman/mason.nvim",
@@ -40,15 +37,18 @@ return {
         "MasonUninstallAll",
         "MasonLog",
       }, -- Package Manager
-      dependencies = "williamboman/mason-lspconfig.nvim",
+      dependencies = {
+        "williamboman/mason-lspconfig.nvim",
+        "lukas-reineke/lsp-format.nvim",
+      },
       config = function()
-        local mason = require "mason"
-        local mason_lspconfig = require "mason-lspconfig"
-        local lspconfig = require "lspconfig"
+        local mason = require("mason")
+        local mason_lspconfig = require("mason-lspconfig")
+        local lspconfig = require("lspconfig")
 
         require("lspconfig.ui.windows").default_options.border = "rounded"
 
-        local auto_install = {
+        local language_servers = {
           "jsonls",
           "lua_ls",
           "clangd",
@@ -57,23 +57,28 @@ return {
           "cssls",
           "html",
           "tsserver",
-          -- "omnisharp",
+          "omnisharp",
           "jdtls",
-          -- "yamlls",
-          -- "gopls",
-          -- "lemminx",
+          "yamlls",
+          "gopls",
+          "lemminx",
           "vimls",
-          -- "cmake",
-          -- "powershell_es",
+          "cmake",
+          "powershell_es",
           "rust_analyzer",
           "svelte",
           "tailwindcss",
+          "bufls",
+          "terraformls",
+          "elixirls",
+          "intelephense",
+          "efm",
         }
 
         mason.setup {
           ui = {
             -- Whether to automatically check for new versions when opening the :Mason window.
-            check_outdated_packages_on_open = false,
+            check_outdated_packages_on_open = true,
             border = "rounded",
             icons = {
               package_pending = " ",
@@ -84,7 +89,7 @@ return {
         }
 
         mason_lspconfig.setup {
-          ensure_installed = auto_install,
+          ensure_installed = language_servers,
         }
 
         local disabled_servers = {

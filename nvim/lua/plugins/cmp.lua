@@ -2,13 +2,13 @@ return {
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    "hrsh7th/cmp-buffer", -- Buffer Completions
-    "hrsh7th/cmp-path", -- Path Completions
-    "saadparwaiz1/cmp_luasnip", -- Snippet Completions
-    "hrsh7th/cmp-nvim-lsp", -- LSP Completions
-    "hrsh7th/cmp-nvim-lua", -- Lua Completions
-    "hrsh7th/cmp-cmdline", -- CommandLine Completions
-    "L3MON4D3/LuaSnip", -- Snippet Engine
+    "hrsh7th/cmp-buffer",           -- Buffer Completions
+    "hrsh7th/cmp-path",             -- Path Completions
+    "saadparwaiz1/cmp_luasnip",     -- Snippet Completions
+    "hrsh7th/cmp-nvim-lsp",         -- LSP Completions
+    "hrsh7th/cmp-nvim-lua",         -- Lua Completions
+    "hrsh7th/cmp-cmdline",          -- CommandLine Completions
+    "L3MON4D3/LuaSnip",             -- Snippet Engine
     "rafamadriz/friendly-snippets", -- Bunch of Snippets
     {
       "windwp/nvim-autopairs",
@@ -30,10 +30,10 @@ return {
     },
     {
       "zbirenbaum/copilot-cmp",
-      config = function ()
+      config = function()
         require("copilot_cmp").setup()
-      end
-    }
+      end,
+    },
   },
   config = function()
     local cmp = require "cmp"
@@ -43,9 +43,11 @@ return {
     require("luasnip.loaders.from_vscode").lazy_load()
     -- require("luasnip.loaders.from_vscode").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/vscode" }
     local has_words_before = function()
-      if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+      if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+        return false
+      end
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+      return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match "^%s*$" == nil
     end
 
     local kind_icons = {
@@ -95,19 +97,28 @@ return {
       mapping = cmp.mapping.preset.insert {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1)),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1)),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-e>"] = cmp.mapping {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         },
+        -- `Enter` key to confirm completion
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm { select = false },
+
+        -- Ctrl+Space to trigger completion menu
+        ["<C-Space>"] = cmp.mapping.complete(),
+
+        -- Navigate between snippet placeholder
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1)),
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1)),
+
+        -- Scroll up and down in the completion documentation
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() and has_words_before() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
           elseif cmp.visible() then
             cmp.select_next_item()
           elseif luasnip.expandable() then
@@ -155,7 +166,7 @@ return {
           cmp.config.compare.sort_text,
           cmp.config.compare.length,
           cmp.config.compare.order,
-        }
+        },
       },
       sources = {
         { name = "copilot" },

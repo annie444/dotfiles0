@@ -119,11 +119,13 @@
       libusb1 # USB protocols and drivers
       libllvm # LLVM compiler collection
       cmake # C-Make softwares
-      libclang # CLANG compiler
+
+      clangStdenv # CLANG compiler
       mkvtoolnix # Video and Document encoding libraries
       opencv # Computer Vision libraries
       thrift # RPC protocols libraries
     ;
+
 
     # Docker
     inherit (pkgs)
@@ -177,6 +179,20 @@
       rustup # rust installation and management tool
       ghostscript # PostScript and PDF language runtime
       jqp # JSON terminal user interface
+      dejagnu # testing frameworks
+      flex # fast lexical analyzer
+      mpfr # multi-precision floating point arithmetic
+      autogen # automated text and program generation tool
+      isl # integers, sets, and linear constraints
+      libffi # foreign function calls
+      zlib # lossless data compression
+      libxcrypt # extended cryptography libraries
+      texinfo # GNU gcc docs
+      bison # Parser generator
+      gnum4 # macros processor
+      coreutils-full # GNU core utilities
+      prettierd # Prettier Daemon
+      pkg-config # configureator
       julia-bin # Julia runtime
       lua-language-server # Lua language server
       marksman # Mardown language server
@@ -193,7 +209,6 @@
       copilot-cli # Github copilot
       typescript # typescript language server
       certbot # CA Certivicates (ACME) daemon
-      coreutils-full # Core utilities
       git-extras # git command API
       grpcurl # gRPC tooling
       kubernetes-helm # helm (kubectl) package manager

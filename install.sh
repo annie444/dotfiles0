@@ -45,7 +45,7 @@ if [ -d "${DIR}/copilot" ]; then
   ln -s "${DIR}/copilot" "${HOME}/.config/github-copilot"
 fi
 
-if [ -e "/usr/local/bin/dotup" ]; then
+if [ -f "/usr/local/bin/dotup" ]; then
   sudo rm -f "/usr/local/bin/dotup"
 fi
 sudo ln -s "${DIR}/dotup" /usr/local/bin/

@@ -3,14 +3,11 @@ return {
     "mfussenegger/nvim-jdtls",
     ft = "java",
   },
-
   {
     "nvim-lua/plenary.nvim",
     lazy = true,
   },
-
   { "b0o/schemastore.nvim", lazy = true },
-
   {
     "ahmedkhalf/project.nvim",
     event = "VeryLazy",
@@ -57,12 +54,10 @@ return {
       }
     end,
   },
-
   {
     "moll/vim-bbye",
     cmd = { "Bdelete", "Bwipeout" },
   },
-
   {
     "iamcco/markdown-preview.nvim",
     build = function()
@@ -70,7 +65,6 @@ return {
     end,
     ft = "markdown",
   },
-
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
@@ -84,7 +78,7 @@ return {
             segments = {
               { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
               { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
+              { text = { "%s" },                  click = "v:lua.ScSa" },
             },
           }
         end,
@@ -96,12 +90,10 @@ return {
       end,
     },
   },
-
   {
     "sindrets/diffview.nvim",
     event = { "BufReadPost", "BufNewFile" },
   },
-
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
@@ -118,7 +110,6 @@ return {
       vim.notify = require "notify"
     end,
   },
-
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
@@ -141,7 +132,6 @@ return {
       },
     },
   },
-
   {
     "nvim-tree/nvim-web-devicons",
     lazy = true,

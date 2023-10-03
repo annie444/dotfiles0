@@ -83,8 +83,9 @@ end
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight(client, bufnr)
-
-  client.server_capabilities.semanticTokensProvider = nil
+  if client.supports_method "textDocument/formatting" then
+    require("lsp-format").on_attach(client)
+  end
 end
 
 return M
