@@ -212,45 +212,26 @@
       # Shell environments for development
       # With `nix.registry.my.flake = inputs.self`, development shells can be created by running,
       # e.g., `nix develop my#python`.
-      devShells = let pkgs = self.legacyPackages.${system}; in
-        {
-          python = pkgs.mkShell {
-            name = "python311";
-            inputsFrom = attrValues {
-              inherit (pkgs.pkgs-main.python311Packages) black isort;
-              inherit (pkgs) poetry python311 pyright;
-            };
+      devShells = let pkgs = self.legacyPackages.${system}; in {
+        python = pkgs.mkShell {
+          name = "python311";
+          inputsFrom = attrValues {
+            inherit (pkgs.pkgs-main.python311Packages) black isort;
+            inherit (pkgs) poetry python311 pyright;
           };
-          default = (pkgs.buildFHSEnv {
-            name = "gcc-git-build-env";
-            targetPkgs = ps: with ps; [
-              # library depends
-              gmp gmp.dev
-              isl
-              libffi libffi.dev
-              libmpc
-              libxcrypt
-              mpfr mpfr.dev
-              xz xz.dev
-              zlib zlib.dev
-
-              # git checkout need flex as they are not complete release tarballs
-              m4
-              bison
-              flex
-              texinfo
-              
-              # test harness
-              dejagnu
-              autogen
-              
-              # toolchain itself
-              gcc
-              stdenv.cc
-              stdenv.cc.libc stdenv.cc.libc_dev
-            ];
-          }).env; 
         };
+        node = pkgs.mkShell {
+          name = "node";
+          inputsFrom = attrValues { 
+            inherit (pkgs.pkgs-main.nodePackages) yarn vercel;
+            inherit (pkgs) nodejs_18;
+          };
+          shellHook = ''
+              export PATH="$PWD/node_modules/.bin/:$PATH"
+              export NPM_PACKAGES="$HOME/.npm-packages"
+          '';
+        };
+      };
       # }}}
     });
 }

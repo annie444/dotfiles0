@@ -39,6 +39,18 @@
   # Some options also set in `../darwin/homebrew.nix`.
   programs.ssh.enable = true;
   programs.ssh.controlPath = "~/.ssh/%C"; # ensures the path is unique but also fixed length
+  programs.ssh.matchBlocks = {
+    nixos = {
+      hostname = "192.168.10.10";
+      port = 22;
+      user = "annie";
+    };
+    thebrain = {
+      hostname = "192.168.10.12";
+      port = 2824;
+      user = "root";
+    };
+  };
 
   # Zoxide, a faster way to navigate the filesystem
   # https://github.com/ajeetdsouza/zoxide
@@ -164,6 +176,7 @@
     
     inherit (pkgs.nodePackages_latest)
       gitmoji-cli
+      pnpm
     ;
 
     inherit (pkgs.pkgs-unstable)
@@ -203,8 +216,6 @@
       tetex # LaTeX runtime and interpreter
       jdk # Java virtual machine
       jq # JSON terminal parser
-      nodejs # NodeJS runtime
-      yarn # Yarn (NodeJS) runtime and package manager
       terraform # terraform runtime and language server
       copilot-cli # Github copilot
       typescript # typescript language server
