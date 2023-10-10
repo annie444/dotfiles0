@@ -18,6 +18,18 @@
   environment.darwinConfig = "$HOME/.config/nixpkgs";
   environment.pathsToLink = [ "/share/zsh" ];
   programs.nix-index.enable = true;
+  nix.gc.automatic = true;
+  nix.gc.interval = {
+    Hour = 3;
+    Minute = 15;
+  };
+  nix.settings.auto-optimise-store = true;
+
+  # Services
+  documentation.enable = true;
+  documentation.doc.enable = true;
+  documentation.info.enable = true;
+  documentation.man.enable = true;
 
   # Fonts
   fonts.fontDir.enable = true;

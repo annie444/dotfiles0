@@ -129,16 +129,14 @@
       pango # Text rending library
       ncurses # Terminal visualization library
       libusb1 # USB protocols and drivers
-      libllvm # LLVM compiler collection
       cmake # C-Make softwares
-
-      clangStdenv # CLANG compiler
+      libclang # Clang
+      clangStdenv # Clang STD environment
       mkvtoolnix # Video and Document encoding libraries
       opencv # Computer Vision libraries
       thrift # RPC protocols libraries
     ;
-
-
+    
     # Docker
     inherit (pkgs)
       docker # docker base
@@ -176,7 +174,6 @@
     
     inherit (pkgs.nodePackages_latest)
       gitmoji-cli
-      pnpm
     ;
 
     inherit (pkgs.pkgs-unstable)
@@ -189,7 +186,6 @@
       github-copilot-cli # Copilot
       ruby # Ruby runtime
       cargo-udeps # cargo unused dependency tools
-      rustup # rust installation and management tool
       ghostscript # PostScript and PDF language runtime
       jqp # JSON terminal user interface
       dejagnu # testing frameworks

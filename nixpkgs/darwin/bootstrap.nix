@@ -23,8 +23,7 @@
   nix.package = pkgs.nixUnstable;
   services.nix-daemon.enable = true;
 
-
-  # Shells -----------------------------------------------------------------------------------------
+    # Shells -----------------------------------------------------------------------------------------
 
   # Add shells installed by nix to /etc/shells file
   environment.shells = with pkgs; [
