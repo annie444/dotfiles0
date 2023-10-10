@@ -52,6 +52,10 @@
     };
   };
 
+  programs.direnv.enable = true;
+  programs.direnv.enableFishIntegration = true;
+  programs.direnv.nix-direnv.enable = true; 
+
   # Zoxide, a faster way to navigate the filesystem
   # https://github.com/ajeetdsouza/zoxide
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zoxide.enable

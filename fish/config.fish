@@ -17,7 +17,6 @@ status --is-interactive; and begin
     alias du 'dust'
     alias flakeup 'nix flake update $HOME/.config/nixpkgs'
     alias g 'git'
-    alias gh 'op plugin run -- gh'
     alias la 'll -a'
     alias ll 'ls -l --time-style long-iso --icons'
     alias ls 'eza --extended --bytes --links --blocksize --group --header --dereference --binary --octal-permissions --git --git-repos --long --all --all --icons --grid --classify --hyperlink --group-directories-first --time=modified --sort=extension --color=always --width=1 --time-style=long-iso'
@@ -46,9 +45,11 @@ status --is-interactive; and begin
         set -l prev (string split " " (string trim $prev_joined))
         set -l post (string split " " (string trim $post_joined))
         set fish_complete_path $prev "$HOME/.local/share/fish/home-manager_generated_completions" $post
-        set -g PATH  $PATH "$HOME/google-cloud-sdk/bin"
+        set -g PATH  $PATH "$HOME/google-cloud-sdk/bin" "$HOME/.cargo/bin" "$HOME/.local/bin" "$HOME/bin"
+        set -g direnv_fish_mode eval_on_arrow
         set -g USE_GKE_GCLOUD_AUTH_PLUGIN true
         set -g BAT_THEME dracula
+        set -g LDFLAGS $LDFLAGS "-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/"
     end
     
     direnv hook fish | source
@@ -61,3 +62,5 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+direnv hook fish | source

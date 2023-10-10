@@ -54,3 +54,11 @@ if [[ "${DIR}" != "${HOME}/.config/dotfiles" ]]; then
   cd "${HOME}"
   mv "${DIR}" "${HOME}/.config/dotfiles"
 fi
+
+if ! command -v rustup &> /dev/null || ! command -v cargo $> /dev/null || ! command -v rustc &> /dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+if ! command -v pnpm &> /dev/null; then
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
+fi

@@ -16,7 +16,7 @@
     terminal-notifier
   ];
   environment.darwinConfig = "$HOME/.config/nixpkgs";
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
   programs.nix-index.enable = true;
   nix.gc.automatic = true;
   nix.gc.interval = {

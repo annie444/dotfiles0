@@ -51,9 +51,7 @@ if [ ${#POSITIONAL_ARGS[@]} -gt 0 ]; then
   darwin-rebuild "${POSITIONAL_ARGS[@]}"
 elif [ "$UPDATE" = true ]; then
   echo "Updating..."
-  darwin-rebuild build --recreate-lock-file --flake "$HOME/.config/nixpkgs"
-  echo "Installing..."
-  darwin-rebuild switch --refresh --flake "$HOME/.config/nixpkgs"
+  darwin-rebuild switch --recreate-lock-file --fallback --refresh --flake "$HOME/.config/nixpkgs"
 else
   echo "Building..."
   darwin-rebuild build --flake "$HOME/.config/nixpkgs"
