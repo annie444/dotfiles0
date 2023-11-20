@@ -52,10 +52,6 @@
     };
   };
 
-  programs.direnv.enable = true;
-  programs.direnv.enableFishIntegration = true;
-  programs.direnv.nix-direnv.enable = true; 
-
   # Zoxide, a faster way to navigate the filesystem
   # https://github.com/ajeetdsouza/zoxide
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zoxide.enable
@@ -238,9 +234,11 @@
       chromedriver # chromium development base
       powershell # Microsoft powershell
       ninja # C-Make alternative
+      sqlite # Single file sql runtime
       virtualenv # Python virtual environemnt manager
       poetry # Pythong packinging tools
       ruff # Pything linter
+      libmysqlclient # myql client libs
       mercurialFull # version management system
       tree-sitter # file syntax tree
       gzip # GNU file compression tools

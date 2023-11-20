@@ -7,6 +7,8 @@ if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 end
 set -e NIX_REMOTE
 
+set -U EDITOR nvim
+
 status --is-interactive; and begin
     # Aliases
     alias .. 'cd ..'
@@ -50,17 +52,32 @@ status --is-interactive; and begin
         set -g USE_GKE_GCLOUD_AUTH_PLUGIN true
         set -g BAT_THEME dracula
         set -g LDFLAGS $LDFLAGS "-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/"
+        set -g JAVA_HOME "/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+        set -g ANDROID_HOME "$HOME/Library/Android/sdk"
+        set -g NDK_HOME "$ANDROID_HOME/ndk/25.0.8775105"
+        set -g SSH_AUTH_SOCK "~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+        set -g TERM "xterm-256color"
+        set -g -x CC "/etc/profiles/per-user/annieehler/bin/clang"
     end
     
     direnv hook fish | source
     starship init fish | source
+    
+    # pnpm
+    set -gx PNPM_HOME "/Users/annieehler/Library/pnpm"
+    if not string match -q -- $PNPM_HOME $PATH
+      set -gx PATH "$PNPM_HOME" $PATH
+    end
+    # pnpm end
+
+    direnv hook fish | source
+    source ~/.config/op/plugins.sh
 end
 
-# pnpm
-set -gx PNPM_HOME "/Users/annieehler/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /Users/annieehler/miniforge3/bin/conda
+    eval /Users/annieehler/miniforge3/bin/conda "shell.fish" "hook" $argv | source
 end
-# pnpm end
+# <<< conda initialize <<<
 
-direnv hook fish | source

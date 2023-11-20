@@ -109,18 +109,18 @@ in
   home-manager.users.${config.users.primaryUser.username} =
     mkIf (caskPresent "1password-cli" && config ? home-manager) {
       programs.ssh.enable = true;
-      # programs.ssh.extraConfig = ''
-      #   # Only set `IdentityAgent` not connected remotely via SSH.
-      #   # This allows using agent forwarding when connecting remotely.
-      #   Match host * exec "test -z $SSH_TTY"
-      #     IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-      # '';
-      # home.shellAliases = {
-      #   gh = mkIf (elem pkgs.gh homePackages) "op plugin run -- gh";
-      # };
-      # home.sessionVariables = {
-      #   GITHUB_TOKEN = "op://Personal/GitHub Personal Access Token/credential";
-      # };
+      programs.ssh.extraConfig = ''
+        # Only set `IdentityAgent` not connected remotely via SSH.
+        # This allows using agent forwarding when connecting remotely.
+        Match host * exec "test -z $SSH_TTY"
+          IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+      '';
+      home.shellAliases = {
+        gh = mkIf (elem pkgs.gh homePackages) "op plugin run -- gh";
+      };
+      home.sessionVariables = {
+        GITHUB_TOKEN = "op://Personal/GitHub Personal Access Token/credential";
+      };
     };
 
   # For cli packages that aren't currently available for macOS in `nixpkgs`.Packages should be

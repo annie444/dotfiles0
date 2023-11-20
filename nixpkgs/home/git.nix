@@ -29,4 +29,6 @@
   # Aliases config in ./gh-aliases.nix
   programs.gh.enable = true;
   programs.gh.settings.git_protocol = "ssh";
+  programs.gh.settings.editor = "nvim";
+  programs.gh.settings.prompt = "enabled";
 }
