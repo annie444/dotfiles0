@@ -37,8 +37,41 @@ local function backward_search()
   return "<S-Tab>"
 end
 
+
+
+
 local keymaps = {
   normal_mode = {
+    ['gau'] = { cmd = function() require('textcase').current_word('to_upper_case') end },
+    ['gal'] = { cmd = function() require('textcase').current_word('to_lower_case') end },
+    ['gas'] = { cmd = function() require('textcase').current_word('to_snake_case') end },
+    ['gad'] = { cmd = function() require('textcase').current_word('to_dash_case') end },
+    ['gan'] = { cmd = function() require('textcase').current_word('to_constant_case') end },
+    ['gaa'] = { cmd = function() require('textcase').current_word('to_phrase_case') end },
+    ['gac'] = { cmd = function() require('textcase').current_word('to_camel_case') end },
+    ['gap'] = { cmd = function() require('textcase').current_word('to_pascal_case') end },
+    ['gat'] = { cmd = function() require('textcase').current_word('to_title_case') end },
+    ['gaf'] = { cmd = function() require('textcase').current_word('to_path_case') end },
+    ['gaU'] = { cmd = function() require('textcase').lsp_rename('to_upper_case') end },
+    ['gaL'] = { cmd = function() require('textcase').lsp_rename('to_lower_case') end },
+    ['gaS'] = { cmd = function() require('textcase').lsp_rename('to_snake_case') end },
+    ['gaD'] = { cmd = function() require('textcase').lsp_rename('to_dash_case') end },
+    ['gaN'] = { cmd = function() require('textcase').lsp_rename('to_constant_case') end },
+    ['gaA'] = { cmd = function() require('textcase').lsp_rename('to_phrase_case') end },
+    ['gaC'] = { cmd = function() require('textcase').lsp_rename('to_camel_case') end },
+    ['gaP'] = { cmd = function() require('textcase').lsp_rename('to_pascal_case') end },
+    ['gaT'] = { cmd = function() require('textcase').lsp_rename('to_title_case') end },
+    ['gaF'] = { cmd = function() require('textcase').lsp_rename('to_path_case') end },
+    ['geu'] = { cmd = function() require('textcase').operator('to_upper_case') end },
+    ['gel'] = { cmd = function() require('textcase').operator('to_lower_case') end },
+    ['ges'] = { cmd = function() require('textcase').operator('to_snake_case') end },
+    ['ged'] = { cmd = function() require('textcase').operator('to_dash_case') end },
+    ['gen'] = { cmd = function() require('textcase').operator('to_constant_case') end },
+    ['gea'] = { cmd = function() require('textcase').operator('to_phrase_case') end },
+    ['gec'] = { cmd = function() require('textcase').operator('to_camel_case') end },
+    ['gep'] = { cmd = function() require('textcase').operator('to_pascal_case') end },
+    ['get'] = { cmd = function() require('textcase').operator('to_title_case') end },
+    ['gef'] = { cmd = function() require('textcase').operator('to_path_case') end },
     ["<leader>i"] = {
       cmd = ":VimwikiToggleListItem<cr>",
       desc = "Toggle list item"
@@ -365,5 +398,3 @@ set_keymaps(keymaps.terminal_mode, modes.terminal_mode)
 set_keymaps(keymaps.visual_mode, modes.visual_mode)
 set_keymaps(keymaps.visual_block_mode, modes.visual_block_mode)
 set_keymaps(keymaps.command_mode, modes.command_mode)
-
-
